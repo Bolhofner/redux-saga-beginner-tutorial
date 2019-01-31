@@ -1,4 +1,10 @@
-export default function counter(state = 0, action) {
+const initialState = {
+  posts: {},
+  counter: 0
+}
+
+
+export function counter(state = initialState.counter, action) {
   switch (action.type) {
     case 'INCREMENT':
       return state + 1
@@ -9,4 +15,22 @@ export default function counter(state = 0, action) {
     default:
       return state
   }
+}
+
+export function getPost(state = initialState.posts, action) {
+  console.log(state);
+  switch (action.type) {
+    case 'GET_POST':
+      return Object.assign({}, state, {
+        
+    default:
+      return state
+  }
+}
+
+export default function* rootReducer() {
+  yield all([
+    getPost(),
+    counter(),
+  ])
 }
